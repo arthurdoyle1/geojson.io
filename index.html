@@ -160,22 +160,29 @@ map.on('load', () => {
                 .setHTML(feature.properties.description);
 
             // Add a click event to the layer.
-            map.on('click', layerID, (e) => {
+// Add a click event to the layer.
+map.on('click', layerID, (e) => {
     const clickedFeature = e.features[0];
 
     // Use the specific description from the clicked feature's properties.
     const description = clickedFeature.properties.description;
+    console.log('Clicked Feature:', clickedFeature);
+console.log('Properties:', clickedFeature.properties);
 
-    const year = feature.properties.tableData.year;
+    // Fix the case sensitivity issue here
+    // Fix the case sensitivity issue here
+let year = JSON.parse(clickedFeature.properties.tableData).year;
+
 
     // Populate the popup and set its coordinates based on the feature found.
     new mapboxgl.Popup()
         .setLngLat(clickedFeature.geometry.coordinates)
         .setHTML(
-            '<p>year: ' + year + '</p>'  
+            '<p>year: ' + year + '</p>'
         )
         .addTo(map);
 });
+
 
 
             // Add a mouseover event to the layer.
