@@ -229,6 +229,7 @@
                         // Populate the popup and set its coordinates
                         // based on the feature found.
                         popup.setLngLat(e.features[0].geometry.coordinates)
+                            .setHTML(`<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>`)
                             .addTo(map);
                     });
 
