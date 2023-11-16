@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>Filter symbols by toggling checkboxes</title>
-<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-<link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
-<script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
-<style>
-
-body { margin: 0; padding: 0; }
-#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+  <meta charset="utf-8">
+  <title>Filter symbols by toggling checkboxes</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+  <style>
+    body { margin: 0; padding: 0; }
+    #map { position: absolute; top: 0; bottom: 0; width: 100%; }
 
     .filter-group {
         font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -58,13 +57,19 @@ body { margin: 0; padding: 0; }
         content: '✔';
         margin-right: 5px;
     }
-   .mapboxgl-popup {
+
+    .mapboxgl-popup {
         max-width: 400px;
         font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-   }
-</style>
+    }
+  </style>
+</head>
+<body>
+
 <div id="map"></div>
 <nav id="filter-group" class="filter-group"></nav>
+<div id="table-container"></div>
+
  
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoiYXJ0ZG95MyIsImEiOiJjbG96bnN4dGEwMmNnMmltajcybzBqYTRrIn0.ZbzBgIBqibfEWXo9j0mUgw';
@@ -74,73 +79,19 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiYXJ0ZG95MyIsImEiOiJjbG96bnN4dGEwMmNnMmltajcyb
 // to an image in the Mapbox Light style's sprite. (Note:
 // the name of images is the value of the "icon" property
 // + "-15".)
-const places = {
-    'type': 'FeatureCollection',
-    'features': [
-        {
-            'type': 'Feature',
-            'properties': {
-                'description':
-                    '<strong>Make it Mount Pleasant</strong><p><a href="http://www.mtpleasantdc.com/makeitmtpleasant" target="_blank" title="Opens in a new window">Make it Mount Pleasant</a> is a handmade and vintage market and afternoon of live entertainment and kids activities. 12:00-6:00 p.m.</p>',
-                'icon': 'theatre'
-            },
-            'geometry': {
-                'type': 'Point',
-                'coordinates': [-76.038659, 0]
-            }
-        },
-        {
-            'type': 'Feature',
-            'properties': {
-                'description':
-                    '<strong>Make it Mount Pleasant</strong><p>',
-                'icon': 'theatre'
-            },
-            'geometry': {
-                'type': 'Point',
-                'coordinates': [-75.034659, 0]
-            }
-        },
-        {
-            'type': 'Feature',
-            'properties': {
-                'description':
-                    '<strong>Another Place 1</strong><p>Description for Another Place 1.</p>',
-                'icon': 'bar'
-            },
-            'geometry': {
-                'type': 'Point',
-                'coordinates': [-74.03, 0]
-            }
-       },
-        {
-            'type': 'Feature',
-            'properties': {
-                'description':
-                    '<strong>Another night in rome 1</strong><p>Description for Another Place 1.</p>',
-                'icon': 'bar'
-            },
-            'geometry': {
-                'type': 'Point',
-                'coordinates': [-72.03, 0]
-            }            
-        },
-        {
-            'type': 'Feature',
-            'properties': {
-                'description':
-                    '<strong>Another Place 2</strong><p>Description for Another Place 2.</p>',
-                'icon': 'bicycle'
-            },
-            'geometry': {
-                'type': 'Point',
-                'coordinates': [-73.040, 0]
-            }
-        },
-        // Add more duplicated features as needed
-        // ...
-    ]
-};
+
+let places;
+
+// Fetch the GeoJSON file
+fetch('data.geojson')
+  .then(response => response.json())
+  .then(data => {
+    // Assign the data to your variable
+    places = data;
+
+  })
+  .catch(error => console.error('Error loading GeoJSON file:', error));
+
 
 const filterGroup = document.getElementById('filter-group');
 const map = new mapboxgl.Map({
@@ -209,17 +160,22 @@ map.on('load', () => {
                 .setHTML(feature.properties.description);
 
             // Add a click event to the layer.
-map.on('click', layerID, (e) => {
+            map.on('click', layerID, (e) => {
     const clickedFeature = e.features[0];
-    
+
     // Use the specific description from the clicked feature's properties.
     const description = clickedFeature.properties.description;
 
     // Populate the popup and set its coordinates based on the feature found.
-    popup.setLngLat(clickedFeature.geometry.coordinates)
+    new mapboxgl.Popup()
+        .setLngLat(clickedFeature.geometry.coordinates)
         .setHTML(description)
         .addTo(map);
-            });
+
+    // Create table when a feature is clicked
+    createTable(clickedFeature);
+});
+
 
             // Add a mouseover event to the layer.
             map.on('mouseover', layerID, (e) => {
@@ -237,6 +193,47 @@ map.on('click', layerID, (e) => {
     }
 });
 
+// trying
+
+function createTable(data) {
+    const tableContainer = document.getElementById('table-container');
+    const table = document.createElement('table');
+
+    // Create table header
+    const thead = document.createElement('thead');
+    const headerRow = document.createElement('tr');
+    const headers = Object.keys(data.features[0].properties.tableData);
+
+    headers.forEach(header => {
+      const th = document.createElement('th');
+      th.textContent = header;
+      headerRow.appendChild(th);
+    });
+
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    // Create table body
+    const tbody = document.createElement('tbody');
+
+    data.features.forEach(feature => {
+      const row = document.createElement('tr');
+      headers.forEach(header => {
+        const td = document.createElement('td');
+        td.textContent = feature.properties.tableData[header];
+        row.appendChild(td);
+      });
+      tbody.appendChild(row);
+    });
+
+    table.appendChild(tbody);
+
+    // Append the table to the container
+    tableContainer.appendChild(table);
+  }
+
+  // Call the function with your GeoJSON data
+  createTable(places);
 </script>
  
 </body>
