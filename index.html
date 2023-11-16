@@ -221,13 +221,6 @@
                         })
                         .setHTML(`<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>`);
 
-                    // Create a popup, but don't add it to the map yet.
-                    const popup = new mapboxgl.Popup({
-                            closeButton: false,
-                            closeOnClick: false
-                        })
-                        .setHTML(`<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>`);
-
                     // Add a mouseover event to the layer.
                     map.on('mouseover', layerID, (e) => {
                         // Change the cursor style as a UI indicator.
@@ -236,7 +229,6 @@
                         // Populate the popup and set its coordinates
                         // based on the feature found.
                         popup.setLngLat(e.features[0].geometry.coordinates)
-                            .setHTML(`<h3>${e.features[0].properties.title}</h3><p>${e.features[0].properties.description}</p>`)
                             .addTo(map);
                     });
 
