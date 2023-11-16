@@ -29,6 +29,122 @@
         "description": "<strong>Make it Mount Pleasant</strong><p><a href=\"http://www.mtpleasantdc.com/makeitmtpleasant\" target=\"_blank\" title=\"Opens in a new window\">Make it Mount Pleasant</a> is a handmade and vintage market and afternoon of live entertainment and kids activities. 12:00-6:00 p.m.",
         "icon": "theatre"
         }
-      }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-76.138659, 0]
+        },
+        "properties": {
+          "tableData": {
+            "year": 2017
+          },
+          "tableData2": {
+            "category": "Military Cooperation"
+          },
+          "tableData3": {
+            "sender": "United States"
+          },
+          "tableData4": {
+            "receiver": "United Kingdom"
+          },
+          "tableData5": {
+            "comment": "Australia-PNG Defence Cooperation Program"
+          },
+          "tableData6": {
+            "source": "https://twitter.com/AusHCPNG/status/1636617568927756288"
+          },
+          "description": "<strong>Make it Mount Pleasant</strong><p><a href=\"http://www.mtpleasantdc.com/makeitmtpleasant\" target=\"_blank\" title=\"Opens in a new window\">Make it Mount Pleasant</a> is a handmade and vintage market and afternoon of live entertainment and kids activities. 12:00-6:00 p.m.",
+          "icon": "theatre"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-76.38659, 0]
+          },
+          "properties": {
+            "tableData": {
+              "year": 2017
+            },
+            "tableData2": {
+              "category": "Military Cooperation"
+            },
+            "tableData3": {
+              "sender": "United States"
+            },
+            "tableData4": {
+              "receiver": "United Kingdom"
+            },
+            "tableData5": {
+              "comment": "Australia-PNG Defence Cooperation Program"
+            },
+            "tableData6": {
+              "source": "https://twitter.com/AusHCPNG/status/1636617568927756288"
+            },
+            "description": "<strong>Make it Mount Pleasant</strong><p><a href=\"http://www.mtpleasantdc.com/makeitmtpleasant\" target=\"_blank\" title=\"Opens in a new window\">Make it Mount Pleasant</a> is a handmade and vintage market and afternoon of live entertainment and kids activities. 12:00-6:00 p.m.",
+            "icon": "theatre"
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [-76.6538659, 0]
+            },
+            "properties": {
+              "tableData": {
+                "year": 2017
+              },
+              "tableData2": {
+                "category": "Military Cooperation"
+              },
+              "tableData3": {
+                "sender": "United States"
+              },
+              "tableData4": {
+                "receiver": "United Kingdom"
+              },
+              "tableData5": {
+                "comment": "Australia-PNG Defence Cooperation Program"
+              },
+              "tableData6": {
+                "source": "https://twitter.com/AusHCPNG/status/1636617568927756288"
+              },
+              "description": "<strong>Make it Mount Pleasant</strong><p><a href=\"http://www.mtpleasantdc.com/makeitmtpleasant\" target=\"_blank\" title=\"Opens in a new window\">Make it Mount Pleasant</a> is a handmade and vintage market and afternoon of live entertainment and kids activities. 12:00-6:00 p.m.",
+              "icon": "theatre"
+              }
+            },
+            {
+              "type": "Feature",
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-76.88659, 0]
+              },
+              "properties": {
+                "tableData": {
+                  "year": 2017
+                },
+                "tableData2": {
+                  "category": "Military Cooperation"
+                },
+                "tableData3": {
+                  "sender": "United States"
+                },
+                "tableData4": {
+                  "receiver": "United Kingdom"
+                },
+                "tableData5": {
+                  "comment": "Australia-PNG Defence Cooperation Program"
+                },
+                "tableData6": {
+                  "source": "https://twitter.com/AusHCPNG/status/1636617568927756288"
+                },
+                "description": "<strong>Make it Mount Pleasant</strong><p><a href=\"http://www.mtpleasantdc.com/makeitmtpleasant\" target=\"_blank\" title=\"Opens in a new window\">Make it Mount Pleasant</a> is a handmade and vintage market and afternoon of live entertainment and kids activities. 12:00-6:00 p.m.",
+                "icon": "theatre"
+                }
+              }
     ]
   }
