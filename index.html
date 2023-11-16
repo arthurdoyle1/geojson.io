@@ -172,16 +172,29 @@ console.log('Properties:', clickedFeature.properties);
     // Fix the case sensitivity issue here
     // Fix the case sensitivity issue here
 let year = JSON.parse(clickedFeature.properties.tableData).year;
+let category = JSON.parse(clickedFeature.properties.tableData2).category;
+let sender = JSON.parse(clickedFeature.properties.tableData3).sender;
+let receiver = JSON.parse(clickedFeature.properties.tableData4).receiver;
+let comment = JSON.parse(clickedFeature.properties.tableData5).comment;
+let source = JSON.parse(clickedFeature.properties.tableData6).source;
+
 
 
     // Populate the popup and set its coordinates based on the feature found.
-    new mapboxgl.Popup()
-        .setLngLat(clickedFeature.geometry.coordinates)
-        .setHTML(
-            '<p>year: ' + year + '</p>'
-        )
-        .addTo(map);
+ // Populate the popup and set its coordinates based on the feature found.
+new mapboxgl.Popup()
+    .setLngLat(clickedFeature.geometry.coordinates)
+    .setHTML(
+        '<p>year: ' + year + '</p>' +
+        '<p>category: ' + category + '</p>' +
+        '<p>sender: ' + sender + '</p>' +
+        '<p>receiver: ' + receiver + '</p>' +
+        '<p>Comment: ' + comment + '</p>' +
+        '<p>source: ' + source + '</p>'
+    )
+    .addTo(map);
 });
+
 
 
 
