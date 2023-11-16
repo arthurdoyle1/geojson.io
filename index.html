@@ -166,14 +166,15 @@ map.on('load', () => {
     // Use the specific description from the clicked feature's properties.
     const description = clickedFeature.properties.description;
 
+    const year = feature.properties.tableData.year;
+
     // Populate the popup and set its coordinates based on the feature found.
     new mapboxgl.Popup()
         .setLngLat(clickedFeature.geometry.coordinates)
-        .setHTML(description)
+        .setHTML(
+            '<p>year: ' + year + '</p>'  
+        )
         .addTo(map);
-
-    // Create table when a feature is clicked
-    createTable(clickedFeature);
 });
 
 
@@ -193,47 +194,6 @@ map.on('load', () => {
     }
 });
 
-// trying
-
-function createTable(data) {
-    const tableContainer = document.getElementById('table-container');
-    const table = document.createElement('table');
-
-    // Create table header
-    const thead = document.createElement('thead');
-    const headerRow = document.createElement('tr');
-    const headers = Object.keys(data.features[0].properties.tableData);
-
-    headers.forEach(header => {
-      const th = document.createElement('th');
-      th.textContent = header;
-      headerRow.appendChild(th);
-    });
-
-    thead.appendChild(headerRow);
-    table.appendChild(thead);
-
-    // Create table body
-    const tbody = document.createElement('tbody');
-
-    data.features.forEach(feature => {
-      const row = document.createElement('tr');
-      headers.forEach(header => {
-        const td = document.createElement('td');
-        td.textContent = feature.properties.tableData[header];
-        row.appendChild(td);
-      });
-      tbody.appendChild(row);
-    });
-
-    table.appendChild(tbody);
-
-    // Append the table to the container
-    tableContainer.appendChild(table);
-  }
-
-  // Call the function with your GeoJSON data
-  createTable(places);
 </script>
  
 </body>
